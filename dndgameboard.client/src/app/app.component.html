@@ -1,0 +1,38 @@
+<br />
+<div class="zoom-container" (wheel)="onScroll($event)" (mousemove)="onMouseMove($event)" (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp()">
+  <div class="game-board" [style.gridTemplateColumns]="'repeat(' + value + ', 1fr)'"  [ngStyle]="{
+  transform: 'scale(' + scale + ')',
+  'transform-origin': transformOrigin,
+  'margin-left': offsetX + 'px',
+   'margin-top': offsetY + 'px'
+}" style="background-image: url('C:\Users\chris\source\repos\DnDGameboard\dndgameboard.client\public\dndmap.png');">
+    <div *ngFor="let number of numbers" [style.width]="(7/value)*120-1.32 +'px'" [style.height]="(7/value)*120-1.32 +'px'" class="box"></div>
+  </div>
+
+</div>
+  <mat-slider (input)="onSlide()" class="example-margin"
+              [max]="max"
+              [min]="min"
+              [step]=1
+              [discrete]=true>
+    <input matSliderThumb [(ngModel)]="value" #slider>
+  </mat-slider>
+
+
+<br />
+<span class="dot" [style.width]="((7/value)*120-1.32) +'px'" [style.height]="((7/value)*120-1.32) +'px'" (mousedown)="onMouseDown1($event)"  (mousemove)="onMouseMove($event)" (mouseup)="onMouseUp()"
+      [ngStyle]="{
+  transform: 'scale(' + scale + ')',
+  'transform-origin': transformOrigin,
+  'margin-left': offsetX1 + 'px',
+   'margin-top': offsetY1 + 'px'
+}">
+
+</span>
+<!--<div class="zoom-container" (wheel)="onScroll($event)">
+  <div class="zoom-content">
+    <p>Scroll to zoom in or out!</p>
+    <!-- Add more content here
+  </div>
+</div>
+-->
