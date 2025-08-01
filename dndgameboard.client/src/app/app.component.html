@@ -1,34 +1,58 @@
-<br />
-<div class="zoom-container" (wheel)="onScroll($event)" (mousemove)="onMouseMove($event)" (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp()">
-  <div class="game-board" [style.gridTemplateColumns]="'repeat(' + value + ', 1fr)'"  [ngStyle]="{
-  transform: 'scale(' + scale + ')',
-  'transform-origin': transformOrigin,
-  'margin-left': offsetX + 'px',
-   'margin-top': offsetY + 'px'
-}" style="background-image: url('C:\Users\chris\source\repos\DnDGameboard\dndgameboard.client\public\dndmap.png');">
-    <div *ngFor="let number of numbers" [style.width]="(7/value)*120-1.32 +'px'" [style.height]="(7/value)*120-1.32 +'px'" class="box"></div>
+<div class="layout">
+  <div class="create-pieces">
+    <div class="create">CREATE GAME PIECE</div>
+    <div class="name">
+      <div class="create-label">Name:</div>
+      <input style="width:100%" [(ngModel)]="name"/>
+    </div>
+    <label for="img" class="upload-wrapper">
+      <img [src]="previewUrl || '/upload-icon.png'" alt="Upload" class="file-button">
+    </label>
+    <input type="file" id="img" name="img" accept="image/*" (change)="onImageSelected($event)" style="display:none;">
+    <button mat-raised-button (click)="create()" class="create-button">Create</button>
   </div>
+  <div class="board">
+    <div class="zoom-container" (wheel)="onScroll($event)" (mousemove)="onMouseMove($event)" (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp()">
+      <div class="game-board" [style.gridTemplateColumns]="'repeat(' + value + ', 1fr)'" [ngStyle]="{
+  transform: 'translate(' + offsetX + 'px, ' + offsetY + 'px) scale(' + scale + ')',
+  'transform-origin': transformOrigin
+}">
+        <ng-container *ngFor="let number of numbers; let i = index">
+          <div [style.width]="'100%'" [style.height]="'100%'" class="box" (mouseup)="onBoxClick(number)">
+            <span class="dot" [style.width]="'99%'" [style.height]="'99%'" (mouseup)="onDotClick(number)">
+              <span class="namelabeltext"></span>
+            </span>
+          </div>
+        </ng-container>
+      </div>
 
+    </div>
+  </div>
 </div>
+<div class="slider-container">
+  <p>{{value}}x{{value}}</p>
   <mat-slider (input)="onSlide()" class="example-margin"
               [max]="max"
               [min]="min"
-              [step]=1
-              [discrete]=true>
+              [step]=1>
     <input matSliderThumb [(ngModel)]="value" #slider>
   </mat-slider>
+  <button mat-raised-button (click)="clear()">Clear</button>
+</div>
 
+<div class="game-pieces">
+  <div class="enemies" (mouseup)="onPiecesClick()">
+    <span class="circle" *ngFor="let n of numSequence(circles);
+   let i = index;" style="display: block;" [id]=" 'circle-' + i" (mouseup)="onCircleClick(i)">
+      <span class="namelabeltext"></span>
+    </span>
+  </div>
+</div>
+<!-- <span class="circle" *ngFor="let n of numSequence(circles);
+  let i = index;" [id]="'circle-' + i" [style.width]="((7/value)*120-1.32) +'px'" [style.height]="((7/value)*120-1.32) +'px'" (mouseup)="onCircleClick(i)">
 
-<br />
-<span class="dot" [style.width]="((7/value)*120-1.32) +'px'" [style.height]="((7/value)*120-1.32) +'px'" (mousedown)="onMouseDown1($event)"  (mousemove)="onMouseMove($event)" (mouseup)="onMouseUp()"
-      [ngStyle]="{
-  transform: 'scale(' + scale + ')',
-  'transform-origin': transformOrigin,
-  'margin-left': offsetX1 + 'px',
-   'margin-top': offsetY1 + 'px'
-}">
-
-</span>
+ </span>
+ -->
 <!--<div class="zoom-container" (wheel)="onScroll($event)">
   <div class="zoom-content">
     <p>Scroll to zoom in or out!</p>

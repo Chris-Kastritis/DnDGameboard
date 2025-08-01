@@ -1,17 +1,23 @@
+* {
+  box-sizing: border-box;
+}
 .game-board {
   display: grid;
   justify-content: center;
-  width: 840px;
-  height: 840px;
+  max-width: 45vw;
+  max-height: 70vh;
   gap: 0px;
   margin: 0 auto; /* Center the container */
   overflow: hidden;
   position: relative;
+  aspect-ratio: 1 / 1; /* Ensure square cells */
 }
 
 .box {
+  position: relative;
   background-color: white;
   border: 1px solid black;
+  aspect-ratio: 1 / 1; /* Ensure square cells */
 }
 
 .example-margin {
@@ -19,12 +25,13 @@
 }
 
 .zoom-container {
-  width: 840px;
+  max-width: 45vw;
   justify-content: center;
-  height: 840px;
+  max-height: 70vh;
   overflow: hidden;
   position: relative;
   margin: 0 auto;
+  aspect-ratio: 1 / 1; /* Ensure square cells */
 }
 
 .zoom-content {
@@ -40,8 +47,182 @@ img {
   object-fit: cover;
 }
 .dot {
-
-  background-color: red;
+  position:absolute;
+  background-color: white;
+  border: 1px solid black;
   border-radius: 50%;
+  display: none;
+}
+.circle {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  height: 10vh;
   display: inline-block;
+  position: relative;
+  align-items: center;
+}
+.slider-container {
+  display: flex;
+  flex-direction: column; /* Stack the child elements vertically */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.slider-container p {
+  margin-bottom: 0px; /* Adjust this value to control the gap */
+}
+
+.slider-container mat-slider {
+  margin-top: 0px; /* Adjust this value to control the gap */
+}
+
+.enemies{
+  display: flex; /* enables flex layout */
+  align-items: center; /* vertical centering */
+  justify-content: start; /* left-align content, change to center if needed */
+  padding: 0px 15px;
+  border: 2px solid #000;
+  border-radius: 1000px;
+  color: black;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.5vw;
+  height: 12vh;
+  width: 45vw;
+  margin: 0 2.5vw;
+  overflow: hidden;
+}
+
+.game-pieces {
+  display: flex;
+  justify-content: center;
+  margin-top:2vh;
+}
+
+.enemy-label {
+  display: inline-block;
+  width: 30vw;
+  margin-right: 2.5vw;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+  font-size: 3vh;
+}
+
+.ally-label {
+  display: inline-block;
+  width: 30vw;
+  margin-left: 2.5vw;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+  font-size: 3vh;
+}
+
+.create-pieces {
+  display: inline-block;
+  padding: 0px 15px;
+  border: 2px solid #000;
+  border-radius: 15%;
+  text-decoration: none;
+  color: black;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.5vw;
+  vertical-align: middle;
+  height: 45vh;
+  width: 100%; /* Responsive */
+  max-width: 18.5vw;
+  margin-left: 1vw;
+  flex-shrink: 0;
+  left: 0;
+  position: absolute;
+  margin-top: 7.5vh;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: .5em .5vw;
+}
+
+.board {
+  width: 45vw;
+  max-height: 70vh;
+  aspect-ratio: 1 / 1; /* Ensure square cells */
+}
+.layout {
+ display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1vw; /* Optional spacing between the elements */
+  width: 100%;
+  height: auto; /* Or set a fixed height if needed */ 
+}
+
+.create{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1.5vw;
+    margin-left: 1vw;
+}
+
+.name {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2.5vh;
+  gap: 1vw;
+  width: 100%;
+}
+.create-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5vw;
+}
+.upload-wrapper {
+  width: 10vw;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  cursor: pointer;
+  margin: auto;
+  margin-top: 3vh;
+ border:1px solid black;
+}
+
+.file-button {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 50%; /* Ensures circular shape on the image too */
+}
+.create-button {
+  display: block; /* Or inline-block */
+  margin: 2vh auto 0 auto; /* Top margin, center horizontally */
+}
+
+.namelabeltext {
+  display: none;
+  width: 100%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  /* Position the tooltip */
+  position: relative;
+  margin: auto;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  font-size: smaller;
+  transform: translate(-50%, -50%);
+}
+
+.circle:hover .namelabeltext {
+  display:block;
+}
+
+.dot:hover .namelabeltext {
+  display: block;
 }
