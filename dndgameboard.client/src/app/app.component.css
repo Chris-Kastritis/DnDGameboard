@@ -53,16 +53,7 @@ img {
   border-radius: 50%;
   display: none;
 }
-.circle {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  height: 10vh;
-  display: inline-block;
-  position: relative;
-  align-items: center;
-}
+
 .slider-container {
   display: flex;
   flex-direction: column; /* Stack the child elements vertically */
@@ -78,26 +69,42 @@ img {
   margin-top: 0px; /* Adjust this value to control the gap */
 }
 
-.enemies{
-  display: flex; /* enables flex layout */
-  align-items: center; /* vertical centering */
-  justify-content: start; /* left-align content, change to center if needed */
-  padding: 0px 15px;
+.enemies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+  gap: 0.25vw; /* space between circles */
+  padding: 0.5vw;
   border: 2px solid #000;
-  border-radius: 1000px;
   color: black;
   font-family: Helvetica, sans-serif;
   font-size: 1.5vw;
-  height: 12vh;
   width: 45vw;
   margin: 0 2.5vw;
-  overflow: hidden;
+  min-height: 9.75vh;
+  max-height: 10vh; /* optional: allow wrapping within this limit */
+  overflow-y: auto; /* scroll if too many circles */
+}
+
+.circle {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  width: 4vw; /* responsive circle size */
+  min-width: 2vw; /* prevent from becoming too small */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 auto;
 }
 
 .game-pieces {
   display: flex;
   justify-content: center;
-  margin-top:2vh;
+  margin-top: 2vh;
+  flex-wrap: wrap;
 }
 
 .enemy-label {

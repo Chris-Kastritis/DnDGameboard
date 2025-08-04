@@ -43,7 +43,7 @@
 <div class="game-pieces">
   <div class="enemies" (mouseup)="onPiecesClick()">
     <span class="circle" *ngFor="let n of numSequence(circles);
-   let i = index;" style="display: block;" [id]=" 'circle-' + i" (mouseup)="onCircleClick(i)">
+   let i = index;" [attr.data-id]="i" style="display: block;" [id]=" 'circle-' + i" (mouseup)="onCircleClick(i)">
       <span class="namelabeltext"></span>
     </span>
   </div>

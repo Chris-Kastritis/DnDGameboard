@@ -15,6 +15,7 @@ export class AppComponent{
   value = 5;
   circles = 0;
   name: string = "";
+
   previewUrl: string | null = null;
   imageUrl: string [] = [];
   numbers: Array<number> = Array(Math.pow(this.value, 2)).fill(0).map((x, i) => i);
@@ -159,6 +160,7 @@ export class AppComponent{
         dot.style.backgroundRepeat = 'no-repeat';
         dot.style.backgroundPosition = 'center';
         circle.style.display = "none";
+        dot.dataset['id'] = circle.dataset?.['id'];
         dotLabel.textContent = circleLabel.textContent;
         this.circleClicked = -1;
         this.pieces--;
@@ -174,6 +176,7 @@ export class AppComponent{
             dot.style.backgroundSize = 'contain';
             dot.style.backgroundRepeat = 'no-repeat';
             dot.style.backgroundPosition = 'center';
+            dot.dataset['id'] = dots[index].dataset?.['id'];
             const dotLabelOld = dots[index].querySelector('.namelabeltext') as HTMLElement;
             const dotLabelNew = dot.querySelector('.namelabeltext') as HTMLElement;
             if (dotLabelNew && dotLabelOld) {
@@ -188,10 +191,10 @@ export class AppComponent{
   }
   onPiecesClick(): void {
     const dots: HTMLCollectionOf<HTMLElement> = document.getElementsByClassName("dot") as HTMLCollectionOf<HTMLElement>;
-    const circle: HTMLElement | null = document.getElementById('circle-' + this.pieces);
       this.dotClicked.forEach((clicked, index) => {
-        if (clicked && circle) {
-          if (circle.style.display != "inline-block") {
+        if (clicked) {
+          const circle: HTMLElement | null = document.getElementById('circle-' + dots[index].dataset?.['id']);
+          if (circle && circle.style.display != "inline-block") {
             circle.style.display = "inline-block"
             circle.style.backgroundImage = dots[index].style.backgroundImage;
             circle.style.backgroundSize = 'contain';
@@ -226,8 +229,8 @@ export class AppComponent{
     const dots: HTMLCollectionOf<HTMLElement> = document.getElementsByClassName("dot") as HTMLCollectionOf<HTMLElement>;
     for (var i = 0; i < this.value * this.value; i++) {
       if (dots[i].style.display != 'none' && dots[i].style.display!="") {
-        const circle: HTMLElement | null = document.getElementById('circle-' + this.pieces);
-        const circleLabel = document.querySelector(`#circle-${this.pieces} .namelabeltext`);
+        const circle: HTMLElement | null = document.getElementById('circle-' + dots[i].dataset?.['id']);
+        const circleLabel = document.querySelector(`#circle-${dots[i].dataset?.['id']} .namelabeltext`);
         const dotLabel = dots[i].querySelector('.namelabeltext') as HTMLElement;
           if (circle) {
             if (circle.style.display != "inline-block" && circleLabel && dotLabel) {
