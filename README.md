@@ -3,6 +3,12 @@ This project was created to help lower the barrier to entry for playing Dungeons
 # Project Description 
 DnD Gameboard is a website that will allow users to create, share, and play on Dungeons and Dragons maps with friends from anywhere.
 # Changelog:
+ ## V0.2
+ This version if focused on the creation of main game piece functionality.
+ * Create game piece functionality
+ * Ability to set game piece name and image
+ * Game pieces can be placed and moved around the board.
+ * Use clear button to remove all game pieces from the board
  ## V0.1
  This version is focused on the creation of the main functionality of the grid that will be used as the gameboard.
  * Created the main grid in which the dimensions can be changed to fit the needs of the users
